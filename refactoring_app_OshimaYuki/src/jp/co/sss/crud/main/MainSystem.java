@@ -74,14 +74,14 @@ public class MainSystem {
 				System.out.print("社員名:");
 				String empName = br.readLine();
 				System.out.print("性別(0:その他, 1:男性, 2:女性, 9:回答なし):");
-				String Seibetsu = br.readLine();
+				String gender = br.readLine();
 				System.out.print("生年月日(西暦年/月/日):");
 				String birthday = br.readLine();
 				System.out.print("部署ID(1:営業部、2:経理部、3:総務部):");
 				String inputDeptId = br.readLine();
 
 				// 登録機能の呼出
-				DBController.insertEmployee(empName, Seibetsu, birthday, inputDeptId);
+				DBController.insertEmployee(empName, gender, birthday, inputDeptId);
 				break;
 
 			case 5:

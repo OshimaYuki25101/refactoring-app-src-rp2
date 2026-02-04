@@ -42,14 +42,14 @@ public class MainSystem {
 			System.out.print("メニュー番号を入力してください：");
 
 			// メニュー番号の入力
-			String menuNoStr = br.readLine();
-			menuNo = Integer.parseInt(menuNoStr);
+			String inputMenuNo = br.readLine();
+			menuNo = Integer.parseInt(inputMenuNo);
 
 			// 機能の呼出
 			switch (menuNo) {
 			case 1:
 				// 全件表示機能の呼出
-				DBController.find();
+				DBController.findAll();
 				break;
 
 			case 2:
@@ -57,7 +57,7 @@ public class MainSystem {
 				System.out.print("社員名:");
 
 				// 検索機能の呼出
-				DBController.findB();
+				DBController.findName();
 				break;
 
 			case 3:

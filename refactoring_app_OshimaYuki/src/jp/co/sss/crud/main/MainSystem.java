@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.text.ParseException;
 
 import jp.co.sss.crud.db.DBController;
+import jp.co.sss.crud.util.ConstantValue;
 
 /**
  * 社員情報管理システム開始クラス 社員情報管理システムはこのクラスから始まる。<br/>
@@ -27,7 +28,7 @@ public class MainSystem {
 	public static void main(String[] args) throws IOException, ClassNotFoundException, SQLException, ParseException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
-		int menuNo = 0;
+		int menuNo = ConstantValue.MENU_START;
 
 		do {
 			// メニューの表示
@@ -47,12 +48,12 @@ public class MainSystem {
 
 			// 機能の呼出
 			switch (menuNo) {
-			case 1:
+			case ConstantValue.MENU_FIND_ALL:
 				// 全件表示機能の呼出
 				DBController.findAll();
 				break;
 
-			case 2:
+			case ConstantValue.MENU_FIND_BY_NAME:
 				// 社員名検索
 				System.out.print("社員名:");
 
@@ -60,7 +61,7 @@ public class MainSystem {
 				DBController.findByName();
 				break;
 
-			case 3:
+			case ConstantValue.MENU_FIND_BY_DEPTID:
 				// 検索する部署IDを入力
 				System.out.print("部署ID(1:営業部、2:経理部、3:総務部)を入力してください:");
 				String deptId = br.readLine();
@@ -69,7 +70,7 @@ public class MainSystem {
 				DBController.findByDeptId(deptId);
 				break;
 
-			case 4:
+			case ConstantValue.MENU_INSERT_EMPLOYEE:
 				// 登録する値を入力
 				System.out.print("社員名:");
 				String empName = br.readLine();
@@ -84,7 +85,7 @@ public class MainSystem {
 				DBController.insertEmployee(empName, gender, birthday, inputDeptId);
 				break;
 
-			case 5:
+			case ConstantValue.MENU_UPDATE_EMPLOYEE:
 				// 更新する社員IDを入力
 				System.out.print("更新する社員の社員IDを入力してください：");
 
@@ -98,7 +99,7 @@ public class MainSystem {
 
 				break;
 
-			case 6:
+			case ConstantValue.MENU_DELETE_EMPLOYEE:
 				// 削除する社員IDを入力
 				System.out.print("削除する社員の社員IDを入力してください：");
 
@@ -107,7 +108,7 @@ public class MainSystem {
 				break;
 
 			}
-		} while (menuNo != 7);
+		} while (menuNo != ConstantValue.MENU_SYSTEM_END);
 		System.out.println("システムを終了します。");
 	}
 }

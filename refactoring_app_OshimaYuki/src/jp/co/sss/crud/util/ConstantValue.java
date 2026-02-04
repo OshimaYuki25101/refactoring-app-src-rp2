@@ -4,6 +4,7 @@ public class ConstantValue {
 	private ConstantValue() {
 	}
 
+	public static final int MENU_START = 0;
 	public static final int MENU_FIND_ALL = 1;
 	public static final int MENU_FIND_BY_NAME = 2;
 	public static final int MENU_FIND_BY_DEPTID = 3;

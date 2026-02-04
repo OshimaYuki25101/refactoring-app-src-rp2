@@ -173,7 +173,7 @@ public class DBController {
 	 * @throws SQLException           DB処理でエラーが発生した場合に送出
 	 * @throws IOException            入力処理でエラーが発生した場合に送出
 	 */
-	public static void findByDeptId(String deptId) throws ClassNotFoundException, SQLException, IOException {
+	public static void findByDeptId(String searchDeptId) throws ClassNotFoundException, SQLException, IOException {
 
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
@@ -191,7 +191,7 @@ public class DBController {
 			preparedStatement = connection.prepareStatement(sql.toString());
 
 			// 検索条件となる値をバインド
-			preparedStatement.setInt(1, Integer.parseInt(deptId));
+			preparedStatement.setInt(1, Integer.parseInt(searchDeptId));
 
 			// SQL文を実行
 			resultSet = preparedStatement.executeQuery();
@@ -229,12 +229,12 @@ public class DBController {
 				System.out.print("\t");
 
 				String deptIdString = resultSet.getString("dept_id");
-				int deptId2 = Integer.parseInt(deptIdString);
-				if (deptId2 == 1) {
+				int deptId = Integer.parseInt(deptIdString);
+				if (deptId == 1) {
 					System.out.println("営業部");
-				} else if (deptId2 == 2) {
+				} else if (deptId == 2) {
 					System.out.println("経理部");
-				} else if (gender == 3) {
+				} else if (deptId == 3) {
 					System.out.println("総務部");
 
 				}

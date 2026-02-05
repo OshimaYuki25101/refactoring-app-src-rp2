@@ -8,8 +8,10 @@ public class ConstantMsg {
 	//メニュー名
 	public static final String MENU_TAITOL = "=== 社員管理システム ===";
 	public static final String MANU_FIND_ALL = "1.全件表示";
+
 	
 	public static final String EMPLOYEE_NAME = "社員名:";
+	public static final String DEPT_TYPE = "部署ID(1:営業部、2:経理部、3:総務部)";
 	
 	public static final String NOT_FIND = "該当者はいませんでした";
 	public static final String COLUMN_NAME = "社員ID\t社員名\t性別\t生年月日\t部署名";

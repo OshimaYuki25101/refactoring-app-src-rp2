@@ -17,7 +17,7 @@ public class ConstantMsg {
 	public static final String MENU_NUMBER_QUESTION 		= "メニュー番号を入力してください：";
 
 	
-	public static final String EMPLOYEE_NAME 				= "社員名:";
+	public static final String EMPLOYEE_NAME 				= "社員名";
 	public static final String GENDER_TYPE 				= "性別(0:その他, 1:男性, 2:女性, 9:回答なし)";
 	public static final String BIRTHDAY 					= "生年月日(西暦年/月/日)";
 	public static final String DEPT_TYPE 					= "部署ID(1:営業部、2:経理部、3:総務部)";
@@ -30,4 +30,9 @@ public class ConstantMsg {
 	public static final String UPDATE_COMPLETE 			= "社員情報を更新しました";
 	public static final String DELETE_EMP_ID 				= "削除する社員の社員IDを入力してください：";
 	public static final String SYSTEM_END 					= "システムを終了します。";
+	
+	public static final String GENDER_NO_ANSWER 					= "回答なし";
+	public static final String GENDER_MAN 							= "男性";
+	public static final String GENDER_WOMAN  						= "女性";
+	public static final String GENDER_OTHRES 						= "その他";
 }

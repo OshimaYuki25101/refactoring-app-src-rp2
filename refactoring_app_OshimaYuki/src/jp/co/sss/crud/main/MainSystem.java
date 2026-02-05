@@ -75,9 +75,9 @@ public class MainSystem {
 				// 登録する値を入力
 				System.out.print(ConstantMsg.EMPLOYEE_NAME);
 				String empName = br.readLine();
-				System.out.print("性別(0:その他, 1:男性, 2:女性, 9:回答なし):");
+				System.out.print(ConstantMsg.GENDER_TYPE+":");
 				String gender = br.readLine();
-				System.out.print("生年月日(西暦年/月/日):");
+				System.out.print(ConstantMsg.BIRTHDAY+":");
 				String birthday = br.readLine();
 				System.out.print(ConstantMsg.DEPT_TYPE+":");
 				String inputDeptId = br.readLine();

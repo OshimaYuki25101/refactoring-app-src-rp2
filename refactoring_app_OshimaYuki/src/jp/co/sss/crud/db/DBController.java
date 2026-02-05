@@ -61,15 +61,15 @@ public class DBController {
 
 				int gender = Integer.parseInt(resultSet.getString("gender"));
 				if (gender == ConstantValue.GENDER_NO_ANSWER) {
-					System.out.print("回答なし" + "\t");
+					System.out.print(ConstantMsg.GENDER_NO_ANSWER + "\t");
 				} else if (gender == ConstantValue.GENDER_MAN) {
-					System.out.print("男性" + "\t");
+					System.out.print(ConstantMsg.GENDER_MAN + "\t");
 
 				} else if (gender == ConstantValue.GENDER_WOMAN) {
-					System.out.print("女性" + "\t");
+					System.out.print(ConstantMsg.GENDER_WOMAN + "\t");
 
 				} else if (gender == ConstantValue.GENDER_OTHERS) {
-					System.out.print("その他" + "\t");
+					System.out.print(ConstantMsg.GENDER_OTHRES + "\t");
 
 				}
 
@@ -137,15 +137,15 @@ public class DBController {
 				String genderString = resultSet.getString("gender");
 				int gender = Integer.parseInt(genderString);
 				if (gender == ConstantValue.GENDER_NO_ANSWER) {
-					System.out.print("回答なし");
+					System.out.print(ConstantMsg.GENDER_NO_ANSWER);
 				} else if (gender == ConstantValue.GENDER_MAN) {
-					System.out.print("男性");
+					System.out.print(ConstantMsg.GENDER_MAN);
 
 				} else if (gender == ConstantValue.GENDER_WOMAN) {
-					System.out.print("女性");
+					System.out.print(ConstantMsg.GENDER_WOMAN);
 
 				} else if (gender == ConstantValue.GENDER_OTHERS) {
-					System.out.print("その他");
+					System.out.print(ConstantMsg.GENDER_OTHRES);
 
 				}
 
@@ -214,15 +214,15 @@ public class DBController {
 				String genderString = resultSet.getString("gender");
 				int gender = Integer.parseInt(genderString);
 				if (gender == ConstantValue.GENDER_NO_ANSWER) {
-					System.out.print("回答なし");
+					System.out.print(ConstantMsg.GENDER_NO_ANSWER);
 				} else if (gender == ConstantValue.GENDER_MAN) {
-					System.out.print("男性");
+					System.out.print(ConstantMsg.GENDER_MAN);
 
 				} else if (gender == ConstantValue.GENDER_WOMAN) {
-					System.out.print("女性");
+					System.out.print(ConstantMsg.GENDER_WOMAN);
 
 				} else if (gender == ConstantValue.GENDER_OTHERS) {
-					System.out.print("その他");
+					System.out.print(ConstantMsg.GENDER_OTHRES);
 
 				}
 
@@ -316,13 +316,13 @@ public class DBController {
 			// ステートメントの作成
 			preparedStatement = connection.prepareStatement(ConstantSQL.SQL_UPDATE);
 
-			System.out.print("社員名：");
+			System.out.print(ConstantMsg.EMPLOYEE_NAME+"：");
 			String empName = br.readLine();
 			// 性別を入力
-			System.out.print("性別(0:回答しない, 1:男性, 2:女性, 9:その他):");
+			System.out.print(ConstantMsg.GENDER_TYPE+":");
 			String gender = br.readLine();
 			// 誕生日を入力
-			System.out.print("生年月日(西暦年/月/日)：");
+			System.out.print(ConstantMsg.BIRTHDAY+"：");
 			String birthday = br.readLine();
 
 			// 部署IDを入力

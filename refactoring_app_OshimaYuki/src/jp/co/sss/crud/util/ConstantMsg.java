@@ -24,15 +24,23 @@ public class ConstantMsg {
 	
 	public static final String NOT_FIND 					= "該当者はいませんでした";
 	public static final String COLUMN_NAME 				= "社員ID\t社員名\t性別\t生年月日\t部署名";
-	public static final String DELETE_EMPLOYEE 			= "社員情報を削除しました";
 
+	public static final String INSERT_COMPLET 				= "社員情報を登録しました";
+	
 	public static final String UPDATE_EMP_ID 				= "更新する社員の社員IDを入力してください：";
 	public static final String UPDATE_COMPLETE 			= "社員情報を更新しました";
+	
 	public static final String DELETE_EMP_ID 				= "削除する社員の社員IDを入力してください：";
+	public static final String DELETE_EMPLOYEE 			= "社員情報を削除しました";
+	
 	public static final String SYSTEM_END 					= "システムを終了します。";
 	
-	public static final String GENDER_NO_ANSWER 					= "回答なし";
-	public static final String GENDER_MAN 							= "男性";
-	public static final String GENDER_WOMAN  						= "女性";
-	public static final String GENDER_OTHRES 						= "その他";
+	public static final String GENDER_NO_ANSWER 			= "回答なし";
+	public static final String GENDER_MAN 					= "男性";
+	public static final String GENDER_WOMAN  				= "女性";
+	public static final String GENDER_OTHRES 				= "その他";
+	
+	public static final String DEPT_SEALE 					= "営業部";
+	public static final String DEPT_ACCUNTING 				= "経理部";
+	public static final String DEPT_GENERAL_AFFAIRS 		= "総務部";
 }

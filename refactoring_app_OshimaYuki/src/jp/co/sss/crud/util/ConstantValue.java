@@ -35,7 +35,7 @@ public class ConstantValue {
 	//営業部
 	public static final int SALES_DEPT = 1;
 	//経理部
-	public static final int MANAGEMENT_DEPT = 2;
+	public static final int ACCUNTING_DEPT = 2;
 	//総務部
 	public static final int GENERAL_AFFAIRS_DEPT = 3;
 }

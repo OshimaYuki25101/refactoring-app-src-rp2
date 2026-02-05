@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.text.ParseException;
 
 import jp.co.sss.crud.db.DBController;
+import jp.co.sss.crud.util.ConstantMsg;
 import jp.co.sss.crud.util.ConstantValue;
 
 /**
@@ -55,7 +56,7 @@ public class MainSystem {
 
 			case ConstantValue.MENU_FIND_BY_NAME:
 				// 社員名検索
-				System.out.print("社員名:");
+				System.out.print(ConstantMsg.EMPLOYEE_NAME);
 
 				// 検索機能の呼出
 				DBController.findByName();
@@ -72,7 +73,7 @@ public class MainSystem {
 
 			case ConstantValue.MENU_INSERT_EMPLOYEE:
 				// 登録する値を入力
-				System.out.print("社員名:");
+				System.out.print(ConstantMsg.EMPLOYEE_NAME);
 				String empName = br.readLine();
 				System.out.print("性別(0:その他, 1:男性, 2:女性, 9:回答なし):");
 				String gender = br.readLine();
@@ -87,7 +88,7 @@ public class MainSystem {
 
 			case ConstantValue.MENU_UPDATE_EMPLOYEE:
 				// 更新する社員IDを入力
-				System.out.print("更新する社員の社員IDを入力してください：");
+				System.out.print(ConstantMsg.UPDATE_EMP_ID);
 
 				// 更新する値を入力する
 				String empId = br.readLine();
@@ -95,13 +96,13 @@ public class MainSystem {
 
 				// 更新機能の呼出
 				DBController.updateEmployee(empId);
-				System.out.println("社員情報を更新しました");
+				System.out.println(ConstantMsg.UPDATE_COMPLETE);
 
 				break;
 
 			case ConstantValue.MENU_DELETE_EMPLOYEE:
 				// 削除する社員IDを入力
-				System.out.print("削除する社員の社員IDを入力してください：");
+				System.out.print(ConstantMsg.DELETE_EMP_ID);
 
 				// 削除機能の呼出
 				DBController.deleteEmployee();
@@ -109,6 +110,6 @@ public class MainSystem {
 
 			}
 		} while (menuNo != ConstantValue.MENU_SYSTEM_END);
-		System.out.println("システムを終了します。");
+		System.out.println(ConstantMsg.SYSTEM_END);
 	}
 }

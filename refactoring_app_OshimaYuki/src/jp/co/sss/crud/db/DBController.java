@@ -233,11 +233,11 @@ public class DBController {
 				String deptIdString = resultSet.getString("dept_id");
 				int deptId = Integer.parseInt(deptIdString);
 				if (deptId == ConstantValue.SALES_DEPT) {
-					System.out.println("営業部");
-				} else if (deptId == ConstantValue.MANAGEMENT_DEPT) {
-					System.out.println("経理部");
+					System.out.println(ConstantMsg.DEPT_SEALE);
+				} else if (deptId == ConstantValue.ACCUNTING_DEPT) {
+					System.out.println(ConstantMsg.DEPT_ACCUNTING);
 				} else if (deptId == ConstantValue.GENERAL_AFFAIRS_DEPT) {
-					System.out.println("総務部");
+					System.out.println(ConstantMsg.DEPT_GENERAL_AFFAIRS);
 
 				}
 			}
@@ -287,7 +287,7 @@ public class DBController {
 			preparedStatement.executeUpdate();
 
 			// 登録完了メッセージを出力
-			System.out.println("社員情報を登録しました");
+			System.out.println(ConstantMsg.INSERT_COMPLET);
 		} finally {
 			DBManager.close(preparedStatement);
 			DBManager.close(connection);

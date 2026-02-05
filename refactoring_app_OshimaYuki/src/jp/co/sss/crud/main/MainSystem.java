@@ -33,8 +33,8 @@ public class MainSystem {
 
 		do {
 			// メニューの表示
-			System.out.println("=== 社員管理システム ===");
-			System.out.println("1.全件表示");
+			System.out.println(ConstantMsg.MENU_TAITOL);
+			System.out.println(ConstantMsg.MANU_FIND_ALL);
 			System.out.println("2.社員名検索");
 			System.out.println("3.部署ID検索");
 			System.out.println("4.新規登録");
@@ -64,7 +64,7 @@ public class MainSystem {
 
 			case ConstantValue.MENU_FIND_BY_DEPTID:
 				// 検索する部署IDを入力
-				System.out.print("部署ID(1:営業部、2:経理部、3:総務部)を入力してください:");
+				System.out.print(ConstantMsg.DEPT_TYPE+"を入力してください:");
 				String deptId = br.readLine();
 
 				// 検索機能の呼出
@@ -79,7 +79,7 @@ public class MainSystem {
 				String gender = br.readLine();
 				System.out.print("生年月日(西暦年/月/日):");
 				String birthday = br.readLine();
-				System.out.print("部署ID(1:営業部、2:経理部、3:総務部):");
+				System.out.print(ConstantMsg.DEPT_TYPE+":");
 				String inputDeptId = br.readLine();
 
 				// 登録機能の呼出

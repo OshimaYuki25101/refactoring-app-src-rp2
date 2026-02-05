@@ -35,13 +35,13 @@ public class MainSystem {
 			// メニューの表示
 			System.out.println(ConstantMsg.MENU_TAITOL);
 			System.out.println(ConstantMsg.MANU_FIND_ALL);
-			System.out.println("2.社員名検索");
-			System.out.println("3.部署ID検索");
-			System.out.println("4.新規登録");
-			System.out.println("5.更新");
-			System.out.println("6.削除");
-			System.out.println("7.終了");
-			System.out.print("メニュー番号を入力してください：");
+			System.out.println(ConstantMsg.MENU_FIND_BY_EMPNAME);
+			System.out.println(ConstantMsg.MENU_FIND_BY_DEPTID);
+			System.out.println(ConstantMsg.MENU_INSERT_EMP);
+			System.out.println(ConstantMsg.MENU_UPDATE_EMP);
+			System.out.println(ConstantMsg.MENU_DELETE_EMP);
+			System.out.println(ConstantMsg.MENU_SYSTEM_CLOSE);
+			System.out.print(ConstantMsg.MENU_NUMBER_QUESTION);
 
 			// メニュー番号の入力
 			String inputMenuNo = br.readLine();

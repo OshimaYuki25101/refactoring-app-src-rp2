@@ -326,7 +326,7 @@ public class DBController {
 			String birthday = br.readLine();
 
 			// 部署IDを入力
-			System.out.print("部署ID(1：営業部、2：経理部、3：総務部)：");
+			System.out.print(ConstantMsg.DEPT_TYPE+"：");
 			String deptId = br.readLine();
 
 			// 入力値をバインド

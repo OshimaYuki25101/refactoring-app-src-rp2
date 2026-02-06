@@ -9,6 +9,7 @@ import java.text.ParseException;
 import jp.co.sss.crud.io.ConsoleWriter;
 import jp.co.sss.crud.io.MenuNoReader;
 import jp.co.sss.crud.service.EmployeeAllFindService;
+import jp.co.sss.crud.service.EmployeeDeleteService;
 import jp.co.sss.crud.service.EmployeeFindByDeptIdService;
 import jp.co.sss.crud.service.EmployeeFindByEmpNameService;
 import jp.co.sss.crud.service.EmployeeRegisterService;
@@ -79,11 +80,9 @@ public class MainSystem {
 				break;
 
 			case ConstantValue.MENU_DELETE_EMPLOYEE:
-				// 削除する社員IDを入力
-				System.out.print(ConstantMsg.DELETE_EMP_ID);
 
 				// 削除機能の呼出
-				DBController.deleteEmployee();
+				EmployeeDeleteService.EmpDelete();;
 				break;
 
 			}

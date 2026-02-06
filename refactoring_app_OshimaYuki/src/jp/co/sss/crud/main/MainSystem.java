@@ -11,6 +11,7 @@ import jp.co.sss.crud.io.MenuNoReader;
 import jp.co.sss.crud.service.EmployeeAllFindService;
 import jp.co.sss.crud.service.EmployeeFindByDeptIdService;
 import jp.co.sss.crud.service.EmployeeFindByEmpNameService;
+import jp.co.sss.crud.service.EmployeeRegisterService;
 import jp.co.sss.crud.util.ConstantMsg;
 import jp.co.sss.crud.util.ConstantValue;
 
@@ -64,18 +65,9 @@ public class MainSystem {
 				break;
 
 			case ConstantValue.MENU_INSERT_EMPLOYEE:
-				// 登録する値を入力
-				System.out.print(ConstantMsg.EMPLOYEE_NAME);
-				String empName = br.readLine();
-				System.out.print(ConstantMsg.GENDER_TYPE+":");
-				String gender = br.readLine();
-				System.out.print(ConstantMsg.BIRTHDAY+":");
-				String birthday = br.readLine();
-				System.out.print(ConstantMsg.DEPT_TYPE+":");
-				String inputDeptId = br.readLine();
-
+				
 				// 登録機能の呼出
-				DBController.insertEmployee(empName, gender, birthday, inputDeptId);
+				EmployeeRegisterService.empRegist();
 				break;
 
 			case ConstantValue.MENU_UPDATE_EMPLOYEE:

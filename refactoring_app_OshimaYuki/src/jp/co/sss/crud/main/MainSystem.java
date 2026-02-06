@@ -6,15 +6,11 @@ import java.io.InputStreamReader;
 import java.sql.SQLException;
 import java.text.ParseException;
 
-import jp.co.sss.crud.db.EmployeeDAO;
-import jp.co.sss.crud.exception.IllegalInputException;
-import jp.co.sss.crud.exception.SystemErrorException;
 import jp.co.sss.crud.io.ConsoleWriter;
 import jp.co.sss.crud.io.MenuNoReader;
 import jp.co.sss.crud.service.EmployeeAllFindService;
 import jp.co.sss.crud.service.EmployeeFindByDeptIdService;
 import jp.co.sss.crud.service.EmployeeFindByEmpNameService;
-import jp.co.sss.crud.service.EmployeeRegisterService;
 import jp.co.sss.crud.util.ConstantMsg;
 import jp.co.sss.crud.util.ConstantValue;
 
@@ -33,21 +29,18 @@ public class MainSystem {
 	 * @throws SQLException 
 	 * @throws ClassNotFoundException 
 	 * @throws ParseException 
-	 * @throws IllegalInputException 
-	 * @throws SystemErrorException 
 	 */
-	public static void main(String[] args) throws IOException, ClassNotFoundException, SQLException, ParseException, SystemErrorException, IllegalInputException {
+	public static void main(String[] args) throws IOException, ClassNotFoundException, SQLException, ParseException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
 		int menuNo = ConstantValue.MENU_START;
 
 		do {
-			// メニューの表示
-			ConsoleWriter.showMenu();
 
+			ConsoleWriter.showMenu();
 			// メニュー番号の入力
-			MenuNoReader menuNoReader = new MenuNoReader();
-			menuNo = (int) menuNoReader.input();
+			MenuNoReader inputNo = new MenuNoReader();
+			menuNo = (int) inputNo.input();
 
 			// 機能の呼出
 			switch (menuNo) {
@@ -57,16 +50,14 @@ public class MainSystem {
 				break;
 
 			case ConstantValue.MENU_FIND_BY_NAME:
-				// 社員名検索
-				System.out.print(ConstantMsg.EMPLOYEE_NAME+":");
 
 				// 検索機能の呼出
-				EmployeeFindByEmpNameService.findByEmpName();;
+				EmployeeFindByEmpNameService.findByEmpName();
 				break;
 
 			case ConstantValue.MENU_FIND_BY_DEPTID:
 				// 検索する部署IDを入力
-				System.out.print(ConstantMsg.DEPT_TYPE + "を入力してください:");
+				
 
 				// 検索機能の呼出
 				EmployeeFindByDeptIdService.findByDeptId();
@@ -74,8 +65,17 @@ public class MainSystem {
 
 			case ConstantValue.MENU_INSERT_EMPLOYEE:
 				// 登録する値を入力
+				System.out.print(ConstantMsg.EMPLOYEE_NAME);
+				String empName = br.readLine();
+				System.out.print(ConstantMsg.GENDER_TYPE+":");
+				String gender = br.readLine();
+				System.out.print(ConstantMsg.BIRTHDAY+":");
+				String birthday = br.readLine();
+				System.out.print(ConstantMsg.DEPT_TYPE+":");
+				String inputDeptId = br.readLine();
+
 				// 登録機能の呼出
-				EmployeeRegisterService.empRegist();;
+				DBController.insertEmployee(empName, gender, birthday, inputDeptId);
 				break;
 
 			case ConstantValue.MENU_UPDATE_EMPLOYEE:
@@ -87,7 +87,7 @@ public class MainSystem {
 				Integer.parseInt(empId);
 
 				// 更新機能の呼出
-				EmployeeDAO.updateEmployee(empId);
+				DBController.updateEmployee(empId);
 				System.out.println(ConstantMsg.UPDATE_COMPLETE);
 
 				break;
@@ -97,7 +97,7 @@ public class MainSystem {
 				System.out.print(ConstantMsg.DELETE_EMP_ID);
 
 				// 削除機能の呼出
-				EmployeeDAO.deleteEmployee();
+				DBController.deleteEmployee();
 				break;
 
 			}

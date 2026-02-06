@@ -4,6 +4,6 @@ import jp.co.sss.crud.io.EmployeeEmpIdReader;
 
 public class EmployeeUpdateService {
 public static void empUpdate() {
-	EmployeeEmpIdReader
+	EmployeeEmpIdReader　
 }
 }

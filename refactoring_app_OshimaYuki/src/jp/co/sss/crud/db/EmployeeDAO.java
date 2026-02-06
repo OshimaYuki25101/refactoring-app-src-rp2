@@ -57,14 +57,14 @@ public class EmployeeDAO {
 			while (resultSet.next()) {
 				Employee emp = new Employee();
 				Department dept = new Department();
-				
+
 				emp.setEmpId(resultSet.getInt("emp_id"));
 				emp.setEmpName(resultSet.getString("emp_name"));
 				emp.setGender(resultSet.getInt("gender"));
 				emp.setBirthday(resultSet.getString("birthday"));
 				dept.setDeptName(resultSet.getString("dept_name"));
 				emp.setDepartment(dept);
-				
+
 				employees.add(emp);
 			}
 			return employees;
@@ -88,9 +88,8 @@ public class EmployeeDAO {
 	 * @throws IllegalInputException 
 	 * @throws SystemErrorException 
 	 */
-	public static List<Employee> findByName(String searchWord) throws ClassNotFoundException, SQLException, IOException, ParseException, SystemErrorException, IllegalInputException {
-		
-
+	public static List<Employee> findByName(String searchWord)
+			throws ClassNotFoundException, SQLException, IOException, ParseException {
 
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
@@ -98,7 +97,7 @@ public class EmployeeDAO {
 		List<Employee> employees = new ArrayList<>();
 
 		try {
-			
+
 			// DBに接続
 			connection = DBManager.getConnection();
 
@@ -118,14 +117,14 @@ public class EmployeeDAO {
 			while (resultSet.next()) {
 				Employee emp = new Employee();
 				Department dept = new Department();
-				
+
 				emp.setEmpId(resultSet.getInt("emp_id"));
 				emp.setEmpName(resultSet.getString("emp_name"));
 				emp.setGender(resultSet.getInt("gender"));
 				emp.setBirthday(resultSet.getString("birthday"));
 				dept.setDeptName(resultSet.getString("dept_name"));
 				emp.setDepartment(dept);
-				
+
 				employees.add(emp);
 			}
 			return employees;
@@ -150,7 +149,8 @@ public class EmployeeDAO {
 	 * @throws IllegalInputException 
 	 * @throws SystemErrorException 
 	 */
-	public static List<Employee> findByDeptId(int searchDeptId) throws ClassNotFoundException, SQLException, IOException, ParseException, SystemErrorException, IllegalInputException {
+	public static List<Employee> findByDeptId(int searchDeptId) throws ClassNotFoundException, SQLException,
+			IOException, ParseException {
 
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
@@ -174,18 +174,17 @@ public class EmployeeDAO {
 			// SQL文を実行
 			resultSet = preparedStatement.executeQuery();
 
-
 			while (resultSet.next()) {
 				Employee emp = new Employee();
 				Department dept = new Department();
-				
+
 				emp.setEmpId(resultSet.getInt("emp_id"));
 				emp.setEmpName(resultSet.getString("emp_name"));
 				emp.setGender(resultSet.getInt("gender"));
 				emp.setBirthday(resultSet.getString("birthday"));
 				dept.setDeptName(resultSet.getString("dept_name"));
 				emp.setDepartment(dept);
-				
+
 				employees.add(emp);
 			}
 
@@ -212,7 +211,7 @@ public class EmployeeDAO {
 	 * @throws IOException             入力処理でエラーが発生した場合に送出
 	 * @throws ParseException 
 	 */
-	public static void insertEmployee(String empName,int gender,String birthday,int deptId)
+	public static void insertEmployee(String empName, int gender, String birthday, int deptId)
 			throws ClassNotFoundException, SQLException, IOException, ParseException {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
@@ -222,7 +221,6 @@ public class EmployeeDAO {
 
 			// ステートメントを作成
 			preparedStatement = connection.prepareStatement(ConstantSQL.SQL_INSERT);
-			
 
 			// 入力値をバインド
 			preparedStatement.setString(1, empName);
@@ -262,17 +260,17 @@ public class EmployeeDAO {
 			// ステートメントの作成
 			preparedStatement = connection.prepareStatement(ConstantSQL.SQL_UPDATE);
 
-			System.out.print(ConstantMsg.EMPLOYEE_NAME+"：");
+			System.out.print(ConstantMsg.EMPLOYEE_NAME + "：");
 			String empName = br.readLine();
 			// 性別を入力
-			System.out.print(ConstantMsg.GENDER_TYPE+":");
+			System.out.print(ConstantMsg.GENDER_TYPE + ":");
 			String gender = br.readLine();
 			// 誕生日を入力
-			System.out.print(ConstantMsg.BIRTHDAY+"：");
+			System.out.print(ConstantMsg.BIRTHDAY + "：");
 			String birthday = br.readLine();
 
 			// 部署IDを入力
-			System.out.print(ConstantMsg.DEPT_TYPE+"：");
+			System.out.print(ConstantMsg.DEPT_TYPE + "：");
 			String deptId = br.readLine();
 
 			// 入力値をバインド

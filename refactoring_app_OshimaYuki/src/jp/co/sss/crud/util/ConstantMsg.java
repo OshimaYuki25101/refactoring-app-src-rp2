@@ -43,4 +43,6 @@ public class ConstantMsg {
 	public static final String DEPT_SEALE 					= "営業部";
 	public static final String DEPT_ACCUNTING 				= "経理部";
 	public static final String DEPT_GENERAL_AFFAIRS 		= "総務部";
+	
+	public static final String MSG_SYSTEM_ERROR 			= "システムエラー";
 }

@@ -247,7 +247,7 @@ public class EmployeeDAO {
 	 * @throws IOException             入力処理でエラーが発生した場合に送出
 	 * @throws ParseException 
 	 */
-	public static void updateEmployee(String empId)
+	public static void updateEmployee(int empId)
 			throws ClassNotFoundException, SQLException, IOException, ParseException {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
@@ -279,7 +279,7 @@ public class EmployeeDAO {
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
 			preparedStatement.setObject(3, sdf.parse(birthday), Types.DATE);
 			preparedStatement.setInt(4, Integer.parseInt(deptId));
-			preparedStatement.setInt(5, Integer.parseInt(empId));
+			preparedStatement.setInt(5, empId);
 
 			// SQL文の実行(失敗時は戻り値0)
 			preparedStatement.executeUpdate();

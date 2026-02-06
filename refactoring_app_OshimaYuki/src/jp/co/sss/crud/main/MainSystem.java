@@ -12,6 +12,7 @@ import jp.co.sss.crud.service.EmployeeAllFindService;
 import jp.co.sss.crud.service.EmployeeFindByDeptIdService;
 import jp.co.sss.crud.service.EmployeeFindByEmpNameService;
 import jp.co.sss.crud.service.EmployeeRegisterService;
+import jp.co.sss.crud.service.EmployeeUpdateService;
 import jp.co.sss.crud.util.ConstantMsg;
 import jp.co.sss.crud.util.ConstantValue;
 
@@ -71,16 +72,9 @@ public class MainSystem {
 				break;
 
 			case ConstantValue.MENU_UPDATE_EMPLOYEE:
-				// 更新する社員IDを入力
-				System.out.print(ConstantMsg.UPDATE_EMP_ID);
-
-				// 更新する値を入力する
-				String empId = br.readLine();
-				Integer.parseInt(empId);
 
 				// 更新機能の呼出
-				DBController.updateEmployee(empId);
-				System.out.println(ConstantMsg.UPDATE_COMPLETE);
+				EmployeeUpdateService.empUpdate();
 
 				break;
 

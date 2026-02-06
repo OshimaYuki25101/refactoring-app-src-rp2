@@ -10,13 +10,13 @@ import jp.co.sss.crud.dto.Employee;
 import jp.co.sss.crud.exception.IllegalInputException;
 import jp.co.sss.crud.exception.SystemErrorException;
 import jp.co.sss.crud.io.ConsoleWriter;
-import jp.co.sss.crud.io.EmployeeNameReader;
+import jp.co.sss.crud.io.EmployeeDeptIdReader;
 
-public class EmployeeFindByEmpNameService {
-	public static void findByEmpName() throws ClassNotFoundException, SQLException, IOException, ParseException, SystemErrorException, IllegalInputException {
-		EmployeeNameReader br = new EmployeeNameReader();
-		String searchWord = (String) br.input();
-		List<Employee> employees = EmployeeDAO.findByName(searchWord);
+public class EmployeeFindByDeptIdService {
+	public static void findByDeptId() throws ClassNotFoundException, SQLException, IOException, ParseException, SystemErrorException, IllegalInputException {
+		EmployeeDeptIdReader br = new EmployeeDeptIdReader();
+		int searchDeptId = (int) br.input();
+		List<Employee> employees = EmployeeDAO.findByDeptId(searchDeptId);
 		ConsoleWriter.showEmployees(employees);
 	}
 }

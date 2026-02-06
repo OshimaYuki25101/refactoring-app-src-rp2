@@ -23,7 +23,7 @@ public class ConstantMsg {
 	public static final String DEPT_TYPE 					= "部署ID(1:営業部、2:経理部、3:総務部)";
 	
 	public static final String NOT_FIND 					= "該当者はいませんでした";
-	public static final String COLUMN_NAME 				= "社員ID\t社員名\t性別\t生年月日\t部署名";
+	public static final String SHOW_HEADER 				= "社員ID\t社員名\t性別\t生年月日\t部署名";
 
 	public static final String INSERT_COMPLET 				= "社員情報を登録しました";
 	

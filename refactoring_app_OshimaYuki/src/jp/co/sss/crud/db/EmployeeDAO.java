@@ -61,8 +61,7 @@ public class EmployeeDAO {
 				emp.setEmpId(resultSet.getInt("emp_id"));
 				emp.setEmpName(resultSet.getString("emp_name"));
 				emp.setGender(resultSet.getInt("gender"));
-				SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
-				emp.setBirthday(sdf.parse(resultSet.getString("birthday")));
+				emp.setBirthday(resultSet.getString("birthday"));
 				dept.setDeptName(resultSet.getString("dept_name"));
 				emp.setDepartment(dept);
 				
@@ -123,8 +122,7 @@ public class EmployeeDAO {
 				emp.setEmpId(resultSet.getInt("emp_id"));
 				emp.setEmpName(resultSet.getString("emp_name"));
 				emp.setGender(resultSet.getInt("gender"));
-				SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
-				emp.setBirthday(sdf.parse(resultSet.getString("birthday")));
+				emp.setBirthday(resultSet.getString("birthday"));
 				dept.setDeptName(resultSet.getString("dept_name"));
 				emp.setDepartment(dept);
 				
@@ -184,8 +182,7 @@ public class EmployeeDAO {
 				emp.setEmpId(resultSet.getInt("emp_id"));
 				emp.setEmpName(resultSet.getString("emp_name"));
 				emp.setGender(resultSet.getInt("gender"));
-				SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
-				emp.setBirthday(sdf.parse(resultSet.getString("birthday")));
+				emp.setBirthday(resultSet.getString("birthday"));
 				dept.setDeptName(resultSet.getString("dept_name"));
 				emp.setDepartment(dept);
 				

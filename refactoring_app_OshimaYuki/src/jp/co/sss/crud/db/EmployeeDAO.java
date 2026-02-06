@@ -10,20 +10,25 @@ import java.sql.SQLException;
 import java.sql.Types;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.List;
 
+import jp.co.sss.crud.dto.Department;
+import jp.co.sss.crud.dto.Employee;
+import jp.co.sss.crud.exception.IllegalInputException;
+import jp.co.sss.crud.exception.SystemErrorException;
 import jp.co.sss.crud.util.ConstantMsg;
 import jp.co.sss.crud.util.ConstantSQL;
-import jp.co.sss.crud.util.ConstantValue;
 
 /**
  * DB操作処理用のクラス
  *
  * @author System Shared
  */
-public class DBController {
+public class EmployeeDAO {
 
 	/** インスタンス化を禁止 */
-	private DBController() {
+	private EmployeeDAO() {
 	}
 
 	/**
@@ -31,11 +36,13 @@ public class DBController {
 	 *
 	 * @throws ClassNotFoundException ドライバクラスが不在の場合に送出
 	 * @throws SQLException           DB処理でエラーが発生した場合に送出
+	 * @throws ParseException 
 	 */
-	public static void findAll() throws ClassNotFoundException, SQLException {
+	public static List<Employee> findAll() throws ClassNotFoundException, SQLException, ParseException {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 		ResultSet resultSet = null;
+		List<Employee> employees = new ArrayList<>();
 
 		try {
 			// DBに接続
@@ -47,37 +54,21 @@ public class DBController {
 			// SQL文を実行
 			resultSet = preparedStatement.executeQuery();
 
-			//resultSetの結果Setがない場合はfalse
-			if (!resultSet.isBeforeFirst()) {
-				System.out.println(ConstantMsg.NOT_FIND);
-				return;
-			}
-
-			// レコードを出力
-			System.out.println(ConstantMsg.COLUMN_NAME);
 			while (resultSet.next()) {
-				System.out.print(resultSet.getString("emp_id") + "\t");
-				System.out.print(resultSet.getString("emp_name") + "\t");
-
-				int gender = Integer.parseInt(resultSet.getString("gender"));
-				if (gender == ConstantValue.GENDER_NO_ANSWER) {
-					System.out.print(ConstantMsg.GENDER_NO_ANSWER + "\t");
-				} else if (gender == ConstantValue.GENDER_MAN) {
-					System.out.print(ConstantMsg.GENDER_MAN + "\t");
-
-				} else if (gender == ConstantValue.GENDER_WOMAN) {
-					System.out.print(ConstantMsg.GENDER_WOMAN + "\t");
-
-				} else if (gender == ConstantValue.GENDER_OTHERS) {
-					System.out.print(ConstantMsg.GENDER_OTHRES + "\t");
-
-				}
-
-				System.out.print(resultSet.getString("birthday") + "\t");
-				System.out.println(resultSet.getString("dept_name"));
+				Employee emp = new Employee();
+				Department dept = new Department();
+				
+				emp.setEmpId(resultSet.getInt("emp_id"));
+				emp.setEmpName(resultSet.getString("emp_name"));
+				emp.setGender(resultSet.getInt("gender"));
+				SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+				emp.setBirthday(sdf.parse(resultSet.getString("birthday")));
+				dept.setDeptName(resultSet.getString("dept_name"));
+				emp.setDepartment(dept);
+				
+				employees.add(emp);
 			}
-
-			System.out.println("");
+			return employees;
 		} finally {
 			// ResultSetをクローズ
 			DBManager.close(resultSet);
@@ -94,18 +85,21 @@ public class DBController {
 	 * @throws ClassNotFoundException ドライバクラスが不在の場合に送出
 	 * @throws SQLException           DB処理でエラーが発生した場合に送出
 	 * @throws IOException            入力処理でエラーが発生した場合に送出
+	 * @throws ParseException 
+	 * @throws IllegalInputException 
+	 * @throws SystemErrorException 
 	 */
-	public static void findByName() throws ClassNotFoundException, SQLException, IOException {
-		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+	public static List<Employee> findByName(String searchWord) throws ClassNotFoundException, SQLException, IOException, ParseException, SystemErrorException, IllegalInputException {
+		
 
-		// 検索ワード
-		String searchWord = br.readLine();
 
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 		ResultSet resultSet = null;
+		List<Employee> employees = new ArrayList<>();
 
 		try {
+			
 			// DBに接続
 			connection = DBManager.getConnection();
 
@@ -121,42 +115,22 @@ public class DBController {
 
 			// SQL文を実行
 			resultSet = preparedStatement.executeQuery();
-			if (!resultSet.isBeforeFirst()) {
-				System.out.println(ConstantMsg.NOT_FIND);
-				return;
-			}
 
-			System.out.println(ConstantMsg.COLUMN_NAME);
 			while (resultSet.next()) {
-				System.out.print(resultSet.getString("emp_id"));
-				System.out.print("\t");
-
-				System.out.print(resultSet.getString("emp_name"));
-				System.out.print("\t");
-
-				String genderString = resultSet.getString("gender");
-				int gender = Integer.parseInt(genderString);
-				if (gender == ConstantValue.GENDER_NO_ANSWER) {
-					System.out.print(ConstantMsg.GENDER_NO_ANSWER);
-				} else if (gender == ConstantValue.GENDER_MAN) {
-					System.out.print(ConstantMsg.GENDER_MAN);
-
-				} else if (gender == ConstantValue.GENDER_WOMAN) {
-					System.out.print(ConstantMsg.GENDER_WOMAN);
-
-				} else if (gender == ConstantValue.GENDER_OTHERS) {
-					System.out.print(ConstantMsg.GENDER_OTHRES);
-
-				}
-
-				System.out.print("\t");
-				System.out.print(resultSet.getString("birthday"));
-				System.out.print("\t");
-
-				System.out.println(resultSet.getString("dept_name"));
+				Employee emp = new Employee();
+				Department dept = new Department();
+				
+				emp.setEmpId(resultSet.getInt("emp_id"));
+				emp.setEmpName(resultSet.getString("emp_name"));
+				emp.setGender(resultSet.getInt("gender"));
+				SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+				emp.setBirthday(sdf.parse(resultSet.getString("birthday")));
+				dept.setDeptName(resultSet.getString("dept_name"));
+				emp.setDepartment(dept);
+				
+				employees.add(emp);
 			}
-
-			System.out.println("");
+			return employees;
 
 		} finally {
 			// クローズ処理
@@ -174,12 +148,16 @@ public class DBController {
 	 * @throws ClassNotFoundException ドライバクラスが不在の場合に送出
 	 * @throws SQLException           DB処理でエラーが発生した場合に送出
 	 * @throws IOException            入力処理でエラーが発生した場合に送出
+	 * @throws ParseException 
+	 * @throws IllegalInputException 
+	 * @throws SystemErrorException 
 	 */
-	public static void findByDeptId(String searchDeptId) throws ClassNotFoundException, SQLException, IOException {
+	public static List<Employee> findByDeptId(int searchDeptId) throws ClassNotFoundException, SQLException, IOException, ParseException, SystemErrorException, IllegalInputException {
 
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 		ResultSet resultSet = null;
+		List<Employee> employees = new ArrayList<>();
 
 		try {
 			// DBに接続
@@ -193,56 +171,28 @@ public class DBController {
 			preparedStatement = connection.prepareStatement(sql.toString());
 
 			// 検索条件となる値をバインド
-			preparedStatement.setInt(1, Integer.parseInt(searchDeptId));
+			preparedStatement.setInt(1, searchDeptId);
 
 			// SQL文を実行
 			resultSet = preparedStatement.executeQuery();
 
-			if (!resultSet.isBeforeFirst()) {
-				System.out.println(ConstantMsg.NOT_FIND);
-				return;
-			}
 
-			System.out.println(ConstantMsg.COLUMN_NAME);
 			while (resultSet.next()) {
-				System.out.print(resultSet.getString("emp_id"));
-				System.out.print("\t");
-
-				System.out.print(resultSet.getString("emp_name"));
-				System.out.print("\t");
-
-				String genderString = resultSet.getString("gender");
-				int gender = Integer.parseInt(genderString);
-				if (gender == ConstantValue.GENDER_NO_ANSWER) {
-					System.out.print(ConstantMsg.GENDER_NO_ANSWER);
-				} else if (gender == ConstantValue.GENDER_MAN) {
-					System.out.print(ConstantMsg.GENDER_MAN);
-
-				} else if (gender == ConstantValue.GENDER_WOMAN) {
-					System.out.print(ConstantMsg.GENDER_WOMAN);
-
-				} else if (gender == ConstantValue.GENDER_OTHERS) {
-					System.out.print(ConstantMsg.GENDER_OTHRES);
-
-				}
-
-				System.out.print("\t");
-				System.out.print(resultSet.getString("birthday"));
-				System.out.print("\t");
-
-				String deptIdString = resultSet.getString("dept_id");
-				int deptId = Integer.parseInt(deptIdString);
-				if (deptId == ConstantValue.SALES_DEPT) {
-					System.out.println(ConstantMsg.DEPT_SEALE);
-				} else if (deptId == ConstantValue.ACCUNTING_DEPT) {
-					System.out.println(ConstantMsg.DEPT_ACCUNTING);
-				} else if (deptId == ConstantValue.GENERAL_AFFAIRS_DEPT) {
-					System.out.println(ConstantMsg.DEPT_GENERAL_AFFAIRS);
-
-				}
+				Employee emp = new Employee();
+				Department dept = new Department();
+				
+				emp.setEmpId(resultSet.getInt("emp_id"));
+				emp.setEmpName(resultSet.getString("emp_name"));
+				emp.setGender(resultSet.getInt("gender"));
+				SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+				emp.setBirthday(sdf.parse(resultSet.getString("birthday")));
+				dept.setDeptName(resultSet.getString("dept_name"));
+				emp.setDepartment(dept);
+				
+				employees.add(emp);
 			}
 
-			System.out.println("");
+			return employees;
 		} finally {
 			// クローズ処理
 			DBManager.close(resultSet);
@@ -265,7 +215,7 @@ public class DBController {
 	 * @throws IOException             入力処理でエラーが発生した場合に送出
 	 * @throws ParseException 
 	 */
-	public static void insertEmployee(String empName, String gender, String birthday, String deptId)
+	public static void insertEmployee(String empName,int gender,String birthday,int deptId)
 			throws ClassNotFoundException, SQLException, IOException, ParseException {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
@@ -275,19 +225,18 @@ public class DBController {
 
 			// ステートメントを作成
 			preparedStatement = connection.prepareStatement(ConstantSQL.SQL_INSERT);
+			
 
 			// 入力値をバインド
 			preparedStatement.setString(1, empName);
-			preparedStatement.setInt(2, Integer.parseInt(gender));
+			preparedStatement.setInt(2, gender);
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
 			preparedStatement.setObject(3, sdf.parse(birthday), Types.DATE);
-			preparedStatement.setInt(4, Integer.parseInt(deptId));
+			preparedStatement.setInt(4, deptId);
 
 			// SQL文を実行
 			preparedStatement.executeUpdate();
 
-			// 登録完了メッセージを出力
-			System.out.println(ConstantMsg.INSERT_COMPLET);
 		} finally {
 			DBManager.close(preparedStatement);
 			DBManager.close(connection);

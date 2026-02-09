@@ -13,7 +13,7 @@ public class EmployeeEmpIdReader implements IConsoleReader {
 		do {
 			try {
 				isError = false;
-				System.out.print(ConstantMsg.UPDATE_EMP_ID + ":");
+				System.out.print(ConstantMsg.UPDATE_EMP_ID );
 				inputEmpId = (int) IConsoleReader.super.input();
 			} catch (IllegalInputException e) {
 				System.out.println(e.getMessage());
@@ -30,19 +30,16 @@ public class EmployeeEmpIdReader implements IConsoleReader {
 
 	@Override
 	public String getErrorMsg() {
-		// TODO 自動生成されたメソッド・スタブ
-		return null;
+		return ConstantValue.EMP_ID_MIN+"以上"+ConstantValue.EMP_ID_MIN+"以下の整数を入力してください";
 	}
 
 	@Override
 	public boolean isValid(String inputString) {
-		// TODO 自動生成されたメソッド・スタブ
-		return true;
+		return inputString.matches("^[1-9１-９]{1}[0-9１-９]{0,3}$");
 	}
 
 	@Override
 	public boolean isParseInt() {
-		// TODO 自動生成されたメソッド・スタブ
 		return true;
 	}
 

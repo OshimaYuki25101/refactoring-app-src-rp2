@@ -243,7 +243,7 @@ public class EmployeeDAO {
 	 * @throws IOException             入力処理でエラーが発生した場合に送出
 	 * @throws ParseException 
 	 */
-	public static void insertEmployee(String empName, int gender, String birthday, int deptId)
+	public static void insertEmployee(Employee emp)
 			throws SystemErrorException {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
@@ -255,11 +255,11 @@ public class EmployeeDAO {
 			preparedStatement = connection.prepareStatement(ConstantSQL.SQL_INSERT);
 
 			// 入力値をバインド
-			preparedStatement.setString(1, empName);
-			preparedStatement.setInt(2, gender);
+			preparedStatement.setString(1, emp.getEmpName());
+			preparedStatement.setInt(2, emp.getGender());
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
-			preparedStatement.setObject(3, sdf.parse(birthday), Types.DATE);
-			preparedStatement.setInt(4, deptId);
+			preparedStatement.setObject(3, sdf.parse(emp.getBirthday()), Types.DATE);
+			preparedStatement.setInt(4, emp.getDepartment().getDeptId());
 
 			// SQL文を実行
 			preparedStatement.executeUpdate();

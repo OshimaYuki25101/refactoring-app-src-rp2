@@ -1,10 +1,8 @@
 package jp.co.sss.crud.service;
 
-import java.io.IOException;
-import java.sql.SQLException;
-import java.text.ParseException;
-
 import jp.co.sss.crud.db.EmployeeDAO;
+import jp.co.sss.crud.exception.IllegalInputException;
+import jp.co.sss.crud.exception.SystemErrorException;
 import jp.co.sss.crud.io.EmployeeBirthdayReader;
 import jp.co.sss.crud.io.EmployeeDeptIdReader;
 import jp.co.sss.crud.io.EmployeeGenderReader;
@@ -12,24 +10,23 @@ import jp.co.sss.crud.io.EmployeeNameReader;
 import jp.co.sss.crud.util.ConstantMsg;
 
 public class EmployeeRegisterService {
-public static void empRegist() throws ClassNotFoundException, SQLException, IOException, ParseException {
-	System.out.print(ConstantMsg.EMPLOYEE_NAME+":");
+public static void empRegist() throws IllegalInputException,SystemErrorException {
+	
 	EmployeeNameReader inputName = new EmployeeNameReader();
-	String empName = (String) inputName.input();
+	String empName = (String) inputName.inputName();
 	
-	System.out.print(ConstantMsg.GENDER_TYPE+":");
 	EmployeeGenderReader inputGender = new EmployeeGenderReader();
-	int gender =(int) inputGender.input();
+	int gender =(int) inputGender.inputGender();
 	
-	System.out.print(ConstantMsg.BIRTHDAY+":");
 	EmployeeBirthdayReader inputBirthday = new EmployeeBirthdayReader();
-	String birthday = (String) inputBirthday.input();
+	String birthday = (String) inputBirthday.inputBirthday();
 	
-	System.out.print(ConstantMsg.DEPT_TYPE+":");
 	EmployeeDeptIdReader inputDeptId = new EmployeeDeptIdReader();
-	int DeptId = (int) inputDeptId.input();
+	int DeptId = (int) inputDeptId.inputDeptId();
 	
 	EmployeeDAO.insertEmployee(empName, gender, birthday, DeptId);
+	
+	System.out.println(ConstantMsg.INSERT_COMPLET);
 	
 }
 }

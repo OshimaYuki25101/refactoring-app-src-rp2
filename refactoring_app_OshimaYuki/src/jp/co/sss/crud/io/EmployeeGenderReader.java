@@ -8,7 +8,9 @@ import jp.co.sss.crud.util.ConstantValue;
 public class EmployeeGenderReader implements IConsoleReader {
 
 	public int inputGender() {
+		//ローカル変数用の初期値代入
 		int gender = ConstantValue.INITIAL_VALUE;
+		//無限ループ用の変数
 		boolean isError = false;
 		do {
 			try {
@@ -36,7 +38,7 @@ public class EmployeeGenderReader implements IConsoleReader {
 
 	@Override
 	public boolean isValid(String inputString) {
-		return inputString.matches("^[0129０１２９]{1}$");
+		return inputString.matches("^[0129０１２９]{1}$");//0・1・2・9どれかの整数
 	}
 
 	@Override

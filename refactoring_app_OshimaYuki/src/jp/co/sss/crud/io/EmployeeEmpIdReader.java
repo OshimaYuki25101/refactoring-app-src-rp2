@@ -8,7 +8,9 @@ import jp.co.sss.crud.util.ConstantValue;
 public class EmployeeEmpIdReader implements IConsoleReader {
 
 	public int inputEmpId() {
+		//ローカル変数用の初期値代入
 		int inputEmpId = ConstantValue.INITIAL_VALUE;
+		//無限ループ用の変数
 		boolean isError = false;
 		do {
 			try {
@@ -35,7 +37,7 @@ public class EmployeeEmpIdReader implements IConsoleReader {
 
 	@Override
 	public boolean isValid(String inputString) {
-		return inputString.matches("^[1-9１-９]{1}[0-9１-９]{0,3}$");
+		return inputString.matches("^[1-9１-９]{1}[0-9１-９]{0,3}$");//1から9999までの整数
 	}
 
 	@Override

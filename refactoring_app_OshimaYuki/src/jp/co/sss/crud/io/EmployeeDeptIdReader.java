@@ -8,7 +8,9 @@ import jp.co.sss.crud.util.ConstantValue;
 public class EmployeeDeptIdReader implements IConsoleReader {
 
 	public int inputDeptId() throws SystemErrorException, IllegalInputException {
+		//ローカル変数用の初期値代入
 		int inputDeptId = ConstantValue.INITIAL_VALUE;
+		//無限ループ用の変数
 		boolean isError = false;
 		do {
 			try {

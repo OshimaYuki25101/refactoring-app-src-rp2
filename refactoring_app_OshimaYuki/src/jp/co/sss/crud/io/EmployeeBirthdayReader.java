@@ -11,7 +11,9 @@ import jp.co.sss.crud.util.ConstantMsg;
 public class EmployeeBirthdayReader implements IConsoleReader {
 
 	public String inputBirthday() {
+		//ローカル変数用の初期値代入
 		String inputBirthday = "";
+		//無限ループ用の変数
 		boolean isError = false;
 		do {
 			try {
@@ -39,6 +41,7 @@ public class EmployeeBirthdayReader implements IConsoleReader {
 	@Override
 	public boolean isValid(String inputString) {
 		try {
+			//正しい形式ではない、または存在しない日付だと例外をおこす
 			LocalDate.parse(inputString,
 					DateTimeFormatter.ofPattern("uuuu/MM/dd").withResolverStyle(ResolverStyle.STRICT));
 			return true;

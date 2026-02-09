@@ -8,7 +8,9 @@ import jp.co.sss.crud.util.ConstantValue;
 public class EmployeeNameReader implements IConsoleReader {
 
 	public String inputName() {
+		//ローカル変数用の初期値代入
 		String empName = "";
+		//無限ループ用の変数
 		boolean isError = false;
 		do {
 			try {
@@ -35,6 +37,7 @@ public class EmployeeNameReader implements IConsoleReader {
 
 	@Override
 	public boolean isValid(String inputString) {
+		//1以上30以下ならtrue、それ以外はfalse
 		if (ConstantValue.NAME_MIN <= inputString.length() && inputString.length() <= ConstantValue.NAME_MAX) {
 			return true;
 		} else {

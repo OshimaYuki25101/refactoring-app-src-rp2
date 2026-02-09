@@ -1,8 +1,32 @@
 package jp.co.sss.crud.io;
 
+import jp.co.sss.crud.exception.IllegalInputException;
+import jp.co.sss.crud.exception.SystemErrorException;
+import jp.co.sss.crud.util.ConstantMsg;
 import jp.co.sss.crud.util.ConstantValue;
 
 public class EmployeeNameReader implements IConsoleReader {
+
+	public String inputName() {
+		String empName = "";
+		boolean isError = false;
+		do {
+			try {
+				isError = false;
+				System.out.print(ConstantMsg.EMPLOYEE_NAME + ":");
+				empName = (String) IConsoleReader.super.input();
+			} catch (IllegalInputException e) {
+				System.out.println(e.getMessage());
+				System.out.println();
+				isError = true;
+			} catch (SystemErrorException e) {
+				System.out.println(e.getMessage());
+				e.printStackTrace();
+				break;
+			}
+		} while (isError);
+		return empName;
+	}
 
 	@Override
 	public String getErrorMsg() {

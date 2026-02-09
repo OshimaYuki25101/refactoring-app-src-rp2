@@ -8,9 +8,12 @@ import jp.co.sss.crud.exception.IllegalInputException;
 import jp.co.sss.crud.exception.SystemErrorException;
 import jp.co.sss.crud.io.ConsoleWriter;
 
-public class EmployeeAllFindService {
-	public static void findAll() throws IllegalInputException, SystemErrorException {
+public class EmployeeAllFindService implements IEmployeeService {
+	@Override
+	public void execute() throws IllegalInputException, SystemErrorException {
 		List<Employee> employees = EmployeeDAO.findAll();
 		ConsoleWriter.showEmployees(employees);
 	}
+
+	
 }

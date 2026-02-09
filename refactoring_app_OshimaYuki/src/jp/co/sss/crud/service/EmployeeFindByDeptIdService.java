@@ -9,8 +9,9 @@ import jp.co.sss.crud.exception.SystemErrorException;
 import jp.co.sss.crud.io.ConsoleWriter;
 import jp.co.sss.crud.io.EmployeeDeptIdReader;
 
-public class EmployeeFindByDeptIdService {
-	public static void findByDeptId() throws IllegalInputException, SystemErrorException {
+public class EmployeeFindByDeptIdService implements IEmployeeService {
+	@Override
+	public void execute() throws IllegalInputException, SystemErrorException {
 		EmployeeDeptIdReader inputDeptId = new EmployeeDeptIdReader();
 		int deptId = inputDeptId.inputDeptId();
 		List<Employee> employees = EmployeeDAO.findByDeptId(deptId);

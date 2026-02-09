@@ -10,12 +10,7 @@ import jp.co.sss.crud.exception.IllegalInputException;
 import jp.co.sss.crud.exception.SystemErrorException;
 import jp.co.sss.crud.io.ConsoleWriter;
 import jp.co.sss.crud.io.MenuNoReader;
-import jp.co.sss.crud.service.EmployeeAllFindService;
-import jp.co.sss.crud.service.EmployeeDeleteService;
-import jp.co.sss.crud.service.EmployeeFindByDeptIdService;
-import jp.co.sss.crud.service.EmployeeFindByEmpNameService;
-import jp.co.sss.crud.service.EmployeeRegisterService;
-import jp.co.sss.crud.service.EmployeeUpdateService;
+import jp.co.sss.crud.service.IEmployeeService;
 import jp.co.sss.crud.util.ConstantMsg;
 import jp.co.sss.crud.util.ConstantValue;
 
@@ -49,46 +44,9 @@ public class MainSystem {
 			menuNo = (int) inputNo.input();
 
 			// 機能の呼出
-			switch (menuNo) {
-			case ConstantValue.MENU_FIND_ALL:
-				// 全件表示機能の呼出
-				EmployeeAllFindService.findAll();
-				break;
+			IEmployeeService selectMenu = IEmployeeService.getInstanceByMenuNo(menuNo);
+			selectMenu.execute();
 
-			case ConstantValue.MENU_FIND_BY_NAME:
-
-				// 検索機能の呼出
-				EmployeeFindByEmpNameService.findByEmpName();
-				break;
-
-			case ConstantValue.MENU_FIND_BY_DEPTID:
-				// 検索する部署IDを入力
-				
-
-				// 検索機能の呼出
-				EmployeeFindByDeptIdService.findByDeptId();
-				break;
-
-			case ConstantValue.MENU_INSERT_EMPLOYEE:
-				
-				// 登録機能の呼出
-				EmployeeRegisterService.empRegist();
-				break;
-
-			case ConstantValue.MENU_UPDATE_EMPLOYEE:
-
-				// 更新機能の呼出
-				EmployeeUpdateService.empUpdate();
-
-				break;
-
-			case ConstantValue.MENU_DELETE_EMPLOYEE:
-
-				// 削除機能の呼出
-				EmployeeDeleteService.EmpDelete();;
-				break;
-
-			}
 			}catch(IllegalInputException e){
 				System.out.println(e.getMessage());
 				System.out.println();

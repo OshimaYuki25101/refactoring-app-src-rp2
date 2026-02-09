@@ -5,9 +5,10 @@ import jp.co.sss.crud.exception.IllegalInputException;
 import jp.co.sss.crud.exception.SystemErrorException;
 import jp.co.sss.crud.io.EmployeeEmpIdReader;
 
-public class EmployeeDeleteService {
+public class EmployeeDeleteService implements IEmployeeService {
 	
-	public static void EmpDelete() throws IllegalInputException,SystemErrorException{
+	@Override
+	public void execute() throws IllegalInputException,SystemErrorException{
 		
 		EmployeeEmpIdReader inputEmpId = new EmployeeEmpIdReader();
 		

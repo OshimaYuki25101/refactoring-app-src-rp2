@@ -1,6 +1,7 @@
 package jp.co.sss.crud.service;
 
 import jp.co.sss.crud.db.EmployeeDAO;
+import jp.co.sss.crud.db.IEmployeeDAO;
 import jp.co.sss.crud.dto.Department;
 import jp.co.sss.crud.dto.Employee;
 import jp.co.sss.crud.exception.IllegalInputException;
@@ -14,6 +15,8 @@ import jp.co.sss.crud.util.ConstantMsg;
 public class EmployeeRegisterService implements IEmployeeService {
 	@Override
 	public void execute() throws IllegalInputException, SystemErrorException {
+		IEmployeeDAO IEmployee = new EmployeeDAO();
+
 		Employee emp = new Employee();
 		Department dept = new Department();
 
@@ -30,7 +33,7 @@ public class EmployeeRegisterService implements IEmployeeService {
 		dept.setDeptId((int) inputDeptId.inputDeptId());
 		emp.setDepartment(dept);
 
-		EmployeeDAO.insertEmployee(emp);
+		IEmployee.insert(emp);
 
 		System.out.println(ConstantMsg.INSERT_COMPLET);
 

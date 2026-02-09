@@ -18,20 +18,25 @@ public interface IEmployeeService {
 		switch (menuNo) {
 		//menu1 全件検索
 		case ConstantValue.MENU_FIND_ALL:
-			newInstance =  new EmployeeAllFindService();
+			newInstance = new EmployeeAllFindService();
 			break;
+		//menu2 社員名検索
 		case ConstantValue.MENU_FIND_BY_NAME:
 			newInstance = new EmployeeFindByEmpNameService();
 			break;
+		//menu3 部署ID検索
 		case ConstantValue.MENU_FIND_BY_DEPTID:
 			newInstance = new EmployeeFindByDeptIdService();
 			break;
+		//menu4 新規登録
 		case ConstantValue.MENU_INSERT_EMPLOYEE:
 			newInstance = new EmployeeRegisterService();
 			break;
+		//menu5 更新
 		case ConstantValue.MENU_UPDATE_EMPLOYEE:
 			newInstance = new EmployeeUpdateService();
 			break;
+		//menu6 削除
 		case ConstantValue.MENU_DELETE_EMPLOYEE:
 			newInstance = new EmployeeDeleteService();
 			break;

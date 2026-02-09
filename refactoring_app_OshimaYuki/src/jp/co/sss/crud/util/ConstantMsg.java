@@ -16,20 +16,20 @@ public class ConstantMsg {
 	public static final String MENU_SYSTEM_CLOSE 			= "7.終了";
 	public static final String MENU_NUMBER_QUESTION 		= "メニュー番号を入力してください：";
 
+	//共通表示メッセージ
+	public static final String NOT_FIND 					= "該当者はいませんでした";
+	public static final String SHOW_HEADER 				= "社員ID\t社員名\t性別\t生年月日\t部署名";
+
 	//社員情報入力メッセージ
 	public static final String EMPLOYEE_NAME 				= "社員名";
 	public static final String GENDER_TYPE 				= "性別(0:その他, 1:男性, 2:女性, 9:回答なし)";
 	public static final String BIRTHDAY 					= "生年月日(西暦年/月/日)";
 	public static final String DEPT_TYPE 					= "部署ID(1:営業部、2:経理部、3:総務部)";
 	
-	//共通表示メッセージ
-	public static final String NOT_FIND 					= "該当者はいませんでした";
-	public static final String SHOW_HEADER 				= "社員ID\t社員名\t性別\t生年月日\t部署名";
-
 	//登録完了メッセージ
 	public static final String INSERT_COMPLET 				= "社員情報を登録しました";
 	
-	//登録用メッセージ
+	//更新用メッセージ
 	public static final String UPDATE_EMP_ID 				= "更新する社員の社員IDを入力してください：";
 	public static final String UPDATE_COMPLETE 			= "社員情報を更新しました";
 	

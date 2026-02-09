@@ -23,11 +23,7 @@ import jp.co.sss.crud.util.ConstantSQL;
  *
  * @author System Shared
  */
-public class EmployeeDAO {
-
-	/** インスタンス化を禁止 */
-	private EmployeeDAO() {
-	}
+public class EmployeeDAO implements IEmployeeDAO {
 
 	/**
 	 * 全ての社員情報を検索
@@ -36,7 +32,8 @@ public class EmployeeDAO {
 	 * @throws SQLException           DB処理でエラーが発生した場合に送出
 	 * @throws ParseException 
 	 */
-	public static List<Employee> findAll() throws SystemErrorException {
+	@Override
+	public List<Employee> findAll() throws SystemErrorException {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 		ResultSet resultSet = null;
@@ -52,6 +49,7 @@ public class EmployeeDAO {
 			// SQL文を実行
 			resultSet = preparedStatement.executeQuery();
 
+			//DTOに格納
 			while (resultSet.next()) {
 				Employee emp = new Employee();
 				Department dept = new Department();
@@ -98,8 +96,8 @@ public class EmployeeDAO {
 	 * @throws IllegalInputException 
 	 * @throws SystemErrorException 
 	 */
-	public static List<Employee> findByName(String empName)
-			throws SystemErrorException {
+	@Override
+	public List<Employee> findByEmployeeName(String searchName) throws SystemErrorException {
 
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
@@ -119,11 +117,12 @@ public class EmployeeDAO {
 			preparedStatement = connection.prepareStatement(sql.toString());
 
 			// 検索条件となる値をバインド
-			preparedStatement.setString(1, "%" + empName + "%");
+			preparedStatement.setString(1, "%" + searchName + "%");
 
 			// SQL文を実行
 			resultSet = preparedStatement.executeQuery();
 
+			//DTOに格納
 			while (resultSet.next()) {
 				Employee emp = new Employee();
 				Department dept = new Department();
@@ -170,7 +169,8 @@ public class EmployeeDAO {
 	 * @throws IllegalInputException 
 	 * @throws SystemErrorException 
 	 */
-	public static List<Employee> findByDeptId(int searchDeptId) throws SystemErrorException {
+	@Override
+	public List<Employee> findByDeptId(int deptId) throws SystemErrorException {
 
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
@@ -189,7 +189,7 @@ public class EmployeeDAO {
 			preparedStatement = connection.prepareStatement(sql.toString());
 
 			// 検索条件となる値をバインド
-			preparedStatement.setInt(1, searchDeptId);
+			preparedStatement.setInt(1, deptId);
 
 			// SQL文を実行
 			resultSet = preparedStatement.executeQuery();
@@ -243,8 +243,8 @@ public class EmployeeDAO {
 	 * @throws IOException             入力処理でエラーが発生した場合に送出
 	 * @throws ParseException 
 	 */
-	public static void insertEmployee(Employee emp)
-			throws SystemErrorException {
+	@Override
+	public void insert(Employee emp) throws SystemErrorException {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 		try {
@@ -290,11 +290,10 @@ public class EmployeeDAO {
 	 * @throws IOException             入力処理でエラーが発生した場合に送出
 	 * @throws ParseException 
 	 */
-	public static void updateEmployee(Employee emp)
-			throws SystemErrorException {
+	@Override
+	public Integer update(Employee emp) throws SystemErrorException {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
-
 		try {
 			// データベースに接続
 			connection = DBManager.getConnection();
@@ -311,7 +310,7 @@ public class EmployeeDAO {
 			preparedStatement.setInt(5, emp.getEmpId());
 
 			// SQL文の実行(失敗時は戻り値0)
-			preparedStatement.executeUpdate();
+			return preparedStatement.executeUpdate();
 
 		} catch (ClassNotFoundException | SQLException | ParseException e) {
 
@@ -336,7 +335,8 @@ public class EmployeeDAO {
 	 * @throws SQLException           DB処理でエラーが発生した場合に送出
 	 * @throws IOException            入力処理でエラーが発生した場合に送出
 	 */
-	public static void deleteEmployee(int empId) throws SystemErrorException {
+	@Override
+	public Integer delete(Integer empId) throws SystemErrorException {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 
@@ -351,12 +351,10 @@ public class EmployeeDAO {
 			preparedStatement.setInt(1, empId);
 
 			// SQL文の実行(失敗時は戻り値0)
-			preparedStatement.executeUpdate();
-
-			System.out.println(ConstantMsg.DELETE_EMPLOYEE);
+			return preparedStatement.executeUpdate();
 
 		} catch (ClassNotFoundException | SQLException e) {
-			e.printStackTrace();
+			throw new SystemErrorException(ConstantMsg.MSG_SYSTEM_ERROR, e);
 
 		}
 
@@ -366,9 +364,10 @@ public class EmployeeDAO {
 				DBManager.close(preparedStatement);
 				DBManager.close(connection);
 			} catch (SQLException e) {
-				e.printStackTrace();
+				throw new SystemErrorException(ConstantMsg.MSG_SYSTEM_ERROR, e);
 			}
 			// DBとの接続を切断
 		}
 	}
+
 }

@@ -1,8 +1,6 @@
 package jp.co.sss.crud.main;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.sql.SQLException;
 import java.text.ParseException;
 
@@ -30,33 +28,37 @@ public class MainSystem {
 	 * @throws ClassNotFoundException 
 	 * @throws ParseException 
 	 */
-	public static void main(String[] args)  {
-		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+	public static void main(String[] args) {
 
+		//メニュー初期表示用の初期値代入
 		int menuNo = ConstantValue.INITIAL_VALUE;
 
 		do {
 			try {
 
-			ConsoleWriter.showMenu();
-			// メニュー番号の入力
-			MenuNoReader inputNo = new MenuNoReader();
-			menuNo = (int) inputNo.input();
+				//メニュー表示
+				ConsoleWriter.showMenu();
+				// メニュー番号の入力
+				MenuNoReader inputNo = new MenuNoReader();
+				menuNo = (int) inputNo.input();
 
-			// 機能の呼出
-			IEmployeeService selectMenu = IEmployeeService.getInstanceByMenuNo(menuNo);
-			selectMenu.execute();
+				// 機能の呼出
+				IEmployeeService selectMenu = IEmployeeService.getInstanceByMenuNo(menuNo);
+				selectMenu.execute();
 
-			}catch(IllegalInputException e){
+			} catch (IllegalInputException e) {
+				//入力ミスの例外処理
 				System.out.println(e.getMessage());
 				System.out.println();
 				continue;
-			}catch(SystemErrorException e){
+			} catch (SystemErrorException e) {
+				//システムエラーの例外処理
 				System.out.println(e.getMessage());
 				e.printStackTrace();
 				break;
 			}
 		} while (menuNo != ConstantValue.MENU_END);
+
 		System.out.println(ConstantMsg.SYSTEM_END);
 	}
 }

@@ -30,7 +30,8 @@ public class EmployeeGenderReader implements IConsoleReader {
 
 	@Override
 	public String getErrorMsg() {
-		return ConstantValue.GENDER_NO_ANSWER+"以上"+ConstantValue.GENDER_WOMAN+"以下、もしくは"+ConstantValue.GENDER_OTHERS+"で入力してください";
+		return ConstantValue.GENDER_NO_ANSWER + "以上" + ConstantValue.GENDER_WOMAN + "以下、もしくは"
+				+ ConstantValue.GENDER_OTHERS + "で入力してください";
 	}
 
 	@Override

@@ -16,9 +16,9 @@ public class EmployeeBirthdayReader implements IConsoleReader {
 		do {
 			try {
 				isError = false;
-				System.out.print(ConstantMsg.BIRTHDAY+":");
+				System.out.print(ConstantMsg.BIRTHDAY + ":");
 				inputBirthday = (String) IConsoleReader.super.input();
-			}catch (IllegalInputException e) {
+			} catch (IllegalInputException e) {
 				System.out.println(e.getMessage());
 				System.out.println();
 				isError = true;
@@ -29,8 +29,8 @@ public class EmployeeBirthdayReader implements IConsoleReader {
 			}
 		} while (isError);
 		return inputBirthday;
-		}
-	
+	}
+
 	@Override
 	public String getErrorMsg() {
 		return "正しい形式(西暦年/月/日)で入力してください";
@@ -39,17 +39,18 @@ public class EmployeeBirthdayReader implements IConsoleReader {
 	@Override
 	public boolean isValid(String inputString) {
 		try {
-			LocalDate.parse(inputString, DateTimeFormatter.ofPattern("uuuu/MM/dd").withResolverStyle(ResolverStyle.STRICT));
+			LocalDate.parse(inputString,
+					DateTimeFormatter.ofPattern("uuuu/MM/dd").withResolverStyle(ResolverStyle.STRICT));
 			return true;
-		}catch(Exception e) {
+		} catch (Exception e) {
 			return false;
 		}
-		
+
 	}
 
 	@Override
 	public boolean isParseInt() {
-		
+
 		return false;
 	}
 

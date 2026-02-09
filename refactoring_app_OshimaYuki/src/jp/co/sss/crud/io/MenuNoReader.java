@@ -2,11 +2,11 @@ package jp.co.sss.crud.io;
 
 import jp.co.sss.crud.util.ConstantValue;
 
-public class MenuNoReader implements IConsoleReader{
+public class MenuNoReader implements IConsoleReader {
 
 	@Override
 	public String getErrorMsg() {
-		return ConstantValue.MENU_FIND_ALL+"以上"+ConstantValue.MENU_END+"以下の整数を入力してください";
+		return ConstantValue.MENU_FIND_ALL + "以上" + ConstantValue.MENU_END + "以下の整数を入力してください";
 	}
 
 	@Override
@@ -18,7 +18,5 @@ public class MenuNoReader implements IConsoleReader{
 	public boolean isParseInt() {
 		return true;
 	}
-
-
 
 }

@@ -13,7 +13,7 @@ public class EmployeeEmpIdReader implements IConsoleReader {
 		do {
 			try {
 				isError = false;
-				System.out.print(ConstantMsg.UPDATE_EMP_ID );
+				System.out.print(ConstantMsg.DELETE_EMP_ID);
 				inputEmpId = (int) IConsoleReader.super.input();
 			} catch (IllegalInputException e) {
 				System.out.println(e.getMessage());
@@ -30,7 +30,7 @@ public class EmployeeEmpIdReader implements IConsoleReader {
 
 	@Override
 	public String getErrorMsg() {
-		return ConstantValue.EMP_ID_MIN+"以上"+ConstantValue.EMP_ID_MIN+"以下の整数を入力してください";
+		return ConstantValue.EMP_ID_MIN + "以上" + ConstantValue.EMP_ID_MIN + "以下の整数を入力してください";
 	}
 
 	@Override

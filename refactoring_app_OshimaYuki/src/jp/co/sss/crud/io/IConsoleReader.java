@@ -9,7 +9,7 @@ import jp.co.sss.crud.exception.SystemErrorException;
 import jp.co.sss.crud.util.ConstantMsg;
 
 public interface IConsoleReader {
-	public default Object input() throws SystemErrorException,IllegalInputException {
+	public default Object input() throws SystemErrorException, IllegalInputException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		String input = null;
 		try {

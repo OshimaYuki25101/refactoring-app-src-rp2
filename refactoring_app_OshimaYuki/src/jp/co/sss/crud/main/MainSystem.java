@@ -6,6 +6,8 @@ import java.io.InputStreamReader;
 import java.sql.SQLException;
 import java.text.ParseException;
 
+import jp.co.sss.crud.exception.IllegalInputException;
+import jp.co.sss.crud.exception.SystemErrorException;
 import jp.co.sss.crud.io.ConsoleWriter;
 import jp.co.sss.crud.io.MenuNoReader;
 import jp.co.sss.crud.service.EmployeeAllFindService;
@@ -33,12 +35,13 @@ public class MainSystem {
 	 * @throws ClassNotFoundException 
 	 * @throws ParseException 
 	 */
-	public static void main(String[] args) throws IOException, ClassNotFoundException, SQLException, ParseException {
+	public static void main(String[] args)  {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
-		int menuNo = ConstantValue.MENU_START;
+		int menuNo = ConstantValue.INITIAL_VALUE;
 
 		do {
+			try {
 
 			ConsoleWriter.showMenu();
 			// メニュー番号の入力
@@ -86,7 +89,16 @@ public class MainSystem {
 				break;
 
 			}
-		} while (menuNo != ConstantValue.MENU_SYSTEM_END);
+			}catch(IllegalInputException e){
+				System.out.println(e.getMessage());
+				System.out.println();
+				continue;
+			}catch(SystemErrorException e){
+				System.out.println(e.getMessage());
+				e.printStackTrace();
+				break;
+			}
+		} while (menuNo != ConstantValue.MENU_END);
 		System.out.println(ConstantMsg.SYSTEM_END);
 	}
 }

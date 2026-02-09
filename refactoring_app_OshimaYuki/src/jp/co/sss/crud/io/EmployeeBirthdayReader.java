@@ -1,22 +1,55 @@
 package jp.co.sss.crud.io;
 
-public class EmployeeBirthdayReader implements IConsoleReader{
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.ResolverStyle;
 
+import jp.co.sss.crud.exception.IllegalInputException;
+import jp.co.sss.crud.exception.SystemErrorException;
+import jp.co.sss.crud.util.ConstantMsg;
+
+public class EmployeeBirthdayReader implements IConsoleReader {
+
+	public String inputBirthday() {
+		String inputBirthday = "";
+		boolean isError = false;
+		do {
+			try {
+				isError = false;
+				System.out.print(ConstantMsg.BIRTHDAY+":");
+				inputBirthday = (String) IConsoleReader.super.input();
+			}catch (IllegalInputException e) {
+				System.out.println(e.getMessage());
+				System.out.println();
+				isError = true;
+			} catch (SystemErrorException e) {
+				System.out.println(e.getMessage());
+				e.printStackTrace();
+				break;
+			}
+		} while (isError);
+		return inputBirthday;
+		}
+	
 	@Override
 	public String getErrorMsg() {
-		// TODO 自動生成されたメソッド・スタブ
-		return null;
+		return "正しい形式(西暦年/月/日)で入力してください";
 	}
 
 	@Override
 	public boolean isValid(String inputString) {
-		// TODO 自動生成されたメソッド・スタブ
-		return true;
+		try {
+			LocalDate.parse(inputString, DateTimeFormatter.ofPattern("uuuu/MM/dd").withResolverStyle(ResolverStyle.STRICT));
+			return true;
+		}catch(Exception e) {
+			return false;
+		}
+		
 	}
 
 	@Override
 	public boolean isParseInt() {
-		// TODO 自動生成されたメソッド・スタブ
+		
 		return false;
 	}
 

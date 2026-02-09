@@ -12,8 +12,11 @@ import jp.co.sss.crud.io.ConsoleWriter;
 public class EmployeeAllFindService implements IEmployeeService {
 	@Override
 	public void execute() throws IllegalInputException, SystemErrorException {
+		
 		IEmployeeDAO IEmployee = new EmployeeDAO();
+		
 		List<Employee> employees = IEmployee.findAll();
+		
 		ConsoleWriter.showEmployees(employees);
 	}
 

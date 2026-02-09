@@ -13,10 +13,13 @@ import jp.co.sss.crud.io.EmployeeNameReader;
 public class EmployeeFindByEmpNameService implements IEmployeeService {
 	@Override
 	public void execute() throws IllegalInputException, SystemErrorException {
+		
 		IEmployeeDAO IEmployee = new EmployeeDAO();
 		EmployeeNameReader inputName = new EmployeeNameReader();
+		
 		String empName = inputName.inputName();
 		List<Employee> employees = IEmployee.findByEmployeeName(empName);
+		
 		ConsoleWriter.showEmployees(employees);
 	}
 

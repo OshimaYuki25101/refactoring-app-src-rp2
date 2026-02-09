@@ -35,7 +35,7 @@ public class EmployeeGenderReader implements IConsoleReader {
 
 	@Override
 	public boolean isValid(String inputString) {
-		return inputString.matches("^|[0129０１２９]{1}$");
+		return inputString.matches("^[0129０１２９]{1}$");
 	}
 
 	@Override

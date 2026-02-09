@@ -30,7 +30,7 @@ public class EmployeeDeptIdReader implements IConsoleReader {
 
 	@Override
 	public String getErrorMsg() {
-		return ConstantValue.DEPTID_MIN + "以上" + ConstantValue.DEPTID_MAX + "以下の整数を入力してください";
+		return ConstantValue.DEPT_ID_MIN + "以上" + ConstantValue.DEPT_ID_MAX + "以下の整数を入力してください";
 	}
 
 	@Override

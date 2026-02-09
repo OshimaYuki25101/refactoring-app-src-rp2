@@ -4,8 +4,12 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
+import jp.co.sss.crud.exception.IllegalInputException;
+import jp.co.sss.crud.exception.SystemErrorException;
+import jp.co.sss.crud.util.ConstantMsg;
+
 public interface IConsoleReader {
-	public default Object input()  {
+	public default Object input() throws SystemErrorException,IllegalInputException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		String input = null;
 		try {
@@ -13,10 +17,10 @@ public interface IConsoleReader {
 			input = br.readLine();
 			if (!isValid(input)) {
 				String errorMsg = getErrorMsg();
-				
+				throw new IllegalInputException(errorMsg);
 			}
 		} catch (IOException e) {
-			
+			throw new SystemErrorException(ConstantMsg.MSG_SYSTEM_ERROR, e);
 		}
 
 		if (isParseInt()) {

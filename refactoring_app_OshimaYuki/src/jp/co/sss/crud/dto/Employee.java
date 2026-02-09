@@ -3,11 +3,15 @@ package jp.co.sss.crud.dto;
 import jp.co.sss.crud.util.ConstantMsg;
 
 public class Employee {
+	//社員ID
 	private int empId;
+	//社員名
 	private String empName;
+	//性別
 	private int gender;
+	//生年月日
 	private String birthday;
-	private int deptId;
+	//部署
 	private Department department;
 
 	public int getEmpId() {
@@ -40,14 +44,6 @@ public class Employee {
 
 	public void setBirthday(String birthday) {
 		this.birthday = birthday;
-	}
-
-	public int getDeptId() {
-		return deptId;
-	}
-
-	public void setDeptId(int deptId) {
-		this.deptId = deptId;
 	}
 
 	public Department getDepartment() {
